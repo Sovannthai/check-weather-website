@@ -29,10 +29,10 @@ class WeatherController extends Controller
             $apiKey = 'e007277ac91a4ff88ad83238252602';
             $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$city}";
 
-            $client = new Client();
+            $client = new Client(); 
             $response = $client->get($url);
             $weatherData = json_decode($response->getBody(), true);
-            
+
             $formattedData = [
                 'city' => $weatherData['location']['name'],
                 'current_temp' => $weatherData['current']['temp_c'],

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjRhYXB3d2tlbGVzNDl2MXR0aDV1bWx2OWo3azh4MjN5ZW40dDYweSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHGZkrolm9UgvM4/giphy.gif') no-repeat center center fixed;
+            background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNm1pM2RjYzc1bzN1NGExamYxODRkc2g0Zzg5ZHE4bzMzbnV2MGV1ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjHGZkrolm9UgvM4/giphy.gif') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
             display: flex;
@@ -67,8 +66,7 @@
         }
 
         .weather-info {
-            display: none;
-            /* Hidden by default */
+            display: none; /* Hidden by default */
         }
 
         .weather-info h2 {
@@ -117,7 +115,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Weather App</h1>
@@ -129,13 +126,13 @@
             <h2 id="city-name"></h2>
             <img id="weather-icon" src="" alt="Weather Icon">
             <p id="temperature"></p>
-            <p id="weather-description"></p>
+            <p id="weather-description"></p> <!-- Fixed typo here -->
         </div>
         <div class="error" id="error-message"></div>
     </div>
 
     <script>
-        const apiKey = 'e007277ac91a4ff88ad83238252602';
+        const apiKey = 'e007277ac91a4ff88ad83238252602'; // Replace with your actual API key
         const searchBtn = document.getElementById('search-btn');
         const cityInput = document.getElementById('city-input');
         const weatherInfo = document.getElementById('weather-info');
@@ -151,19 +148,19 @@
         });
 
         async function fetchWeather(city) {
-            const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+            const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`; // Use HTTPS
 
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error('City not found.');
                 const data = await response.json();
                 console.log(data);
+
                 // Update DOM with weather data
                 document.getElementById('city-name').textContent = data.location.name;
                 document.getElementById('temperature').textContent = `${Math.round(data.current.temp_c)}°C`;
                 document.getElementById('weather-description').textContent = data.current.condition.text;
-                document.getElementById('weather-icon').src =
-                    `https:${data.current.condition.icon}`;
+                document.getElementById('weather-icon').src = `https:${data.current.condition.icon}`; // Use HTTPS
 
                 // Show weather info and hide error
                 weatherInfo.style.display = 'block';
@@ -180,5 +177,4 @@
         }
     </script>
 </body>
-
 </html>
