@@ -92,25 +92,53 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+            font-size: 2rem;
             }
 
-            .search-box input {
-                width: 60%;
+            .search-box {
+            flex-direction: column;
+            align-items: center;
             }
 
+            .search-box input,
             .search-box button {
-                padding: 0.75rem 1rem;
+            width: 100%;
+            border-radius: 25px;
+            margin-bottom: 0.5rem;
             }
 
             .weather-info h2 {
-                font-size: 1.5rem;
+            font-size: 1.5rem;
             }
 
             .weather-info p {
-                font-size: 1rem;
+            font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+            font-size: 1.5rem;
+            }
+
+            .container {
+            padding: 1rem;
+            }
+
+            .search-box input,
+            .search-box button {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            }
+
+            .weather-info h2 {
+            font-size: 1.2rem;
+            }
+
+            .weather-info p {
+            font-size: 0.9rem;
             }
         }
     </style>
@@ -126,7 +154,7 @@
             <h2 id="city-name"></h2>
             <img id="weather-icon" src="" alt="Weather Icon">
             <p id="temperature"></p>
-            <p id="weather-description"></p> <!-- Fixed typo here -->
+            <p id="weather-description"></p>
         </div>
         <div class="error" id="error-message"></div>
     </div>
@@ -154,7 +182,6 @@
                 const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error('City not found.');
                 const data = await response.json();
-                console.log(data);
 
                 // Update DOM with weather data
                 document.getElementById('city-name').textContent = data.location.name;
